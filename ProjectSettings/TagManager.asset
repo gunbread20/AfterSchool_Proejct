@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cube
   - Floar
+  - Wall
   layers:
   - Default
   - TransparentFX
