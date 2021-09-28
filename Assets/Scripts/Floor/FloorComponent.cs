@@ -48,11 +48,8 @@ public class FloorComponent : Component
 
         floor.transform.position = GetNextPosition();
 
-        if (floor.transform.position.z > 0)
-        {
-            floor.Generate();
-        }
-        
+        floor.Generate();
+
         floors.Add(floor);
     }
 

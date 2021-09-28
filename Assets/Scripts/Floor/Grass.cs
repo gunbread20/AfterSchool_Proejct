@@ -7,6 +7,8 @@ public class Grass : Floor
 
     public override void Generate()
     {
+        ReturnTrees();
+
         CreateTrees();
     }
 
@@ -14,16 +16,61 @@ public class Grass : Floor
     {
         int random = Random.Range(3, 5);
 
-        for (int i = 0; i < random; i++)
+        for (int i = 0; i < 6; i++)
         {
             trees.Add(ObjectPool.Instance.GetObject((PoolObjectType)Random.Range(3, 6)));
 
             trees[trees.Count - 1].transform.SetParent(transform, true);
-            trees[trees.Count - 1].transform.position = GetRandomTreePos();
+
+            switch (i)
+            {
+                case 0:
+                    trees[trees.Count - 1].transform.position = new Vector3(-13, 0, transform.position.z);
+
+                    break;
+                case 1:
+                    trees[trees.Count - 1].transform.position = new Vector3(-12, 0, transform.position.z);
+
+                    break;
+                case 2:
+                    trees[trees.Count - 1].transform.position = new Vector3(-11, 0, transform.position.z);
+
+                    break;
+
+                case 3:
+                    trees[trees.Count - 1].transform.position = new Vector3(11, 0, transform.position.z);
+
+                    break;
+                case 4:
+                    trees[trees.Count - 1].transform.position = new Vector3(12, 0, transform.position.z);
+
+                    break;
+                case 5:
+                    trees[trees.Count - 1].transform.position = new Vector3(13, 0, transform.position.z);
+
+                    break;
+
+                default:
+                    trees[trees.Count - 1].transform.position = GetRandomTreePos();
+                    break;
+            }
+            
         }
+
+        if (transform.position.z >= 1)
+        {
+            for (int i = 0; i < random; i++)
+            {
+                trees.Add(ObjectPool.Instance.GetObject((PoolObjectType)Random.Range(3, 6)));
+
+                trees[trees.Count - 1].transform.SetParent(transform, true);
+                trees[trees.Count - 1].transform.position = GetRandomTreePos();
+            }
+        }
+        
     }
 
-    public override void ReturnTrees()
+    void ReturnTrees()
     {
         for (int i = 0; i < trees.Count; i++)
         {
@@ -42,6 +89,8 @@ public class Grass : Floor
                     break;
             }
         }
+
+        trees.Clear();
     }
 
     Vector3 GetRandomTreePos()

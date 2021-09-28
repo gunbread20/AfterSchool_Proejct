@@ -2,11 +2,12 @@
 using System;
 using UnityEngine;
 using UniRx;
+using System.Diagnostics.Tracing;
 
 public class PlayerComponent : Component
 {
 
-    GameObject player;
+    public GameObject player;
 
     IObservable<Vector3> moveStream;
 
@@ -51,6 +52,11 @@ public class PlayerComponent : Component
 
     void Move(Direction direction)
     {
+        if (direction == Direction.None)
+        {
+            return;
+        }
+
         player.transform.DOScaleY(.8f, .08f).OnComplete(() =>
         {
             player.transform.DOScaleY(1, .32f);
@@ -60,9 +66,10 @@ public class PlayerComponent : Component
             RaycastHit hit;
 
             if (Physics.Raycast(player.transform.position + Vector3.up, GetConvertedDirectionV3(direction), out hit, 1f))
-                Debug.Log(hit.collider.name);
+            Debug.Log(hit.collider.name);
+
             else
-                pos += GetConvertedDirectionV3(direction);
+            pos += GetConvertedDirectionV3(direction);
 
             player.transform.DOLocalJump(pos, 1, 1, .32f);
 

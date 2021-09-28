@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4414623828893962}
   m_Layer: 0
   m_Name: Tree_Type0
-  m_TagString: Untagged
+  m_TagString: Tree_Type0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,8 +124,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.8, z: 0.7}
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Size: {x: 0.7, y: 1.6, z: 0.7}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!21 &21015820837071878
 Material:
   serializedVersion: 6
