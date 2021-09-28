@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
 
-        components.Add (new UiComponent());
+        components.Add(new UiComponent());
         components.Add(new FloorComponent());
         components.Add(new WindowInputComponent());
         components.Add(new PlayerComponent());

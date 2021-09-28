@@ -2,5 +2,8 @@
 {
     Floor_Type0,
     Floor_Type1,
-    Player
+    Player,
+    Tree_Type0,
+    Tree_Type1,
+    Tree_Type2
 }

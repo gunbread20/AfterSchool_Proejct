@@ -1,12 +1,29 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System;
-using UniRx;
 using UnityEngine;
+using UniRx;
 
 public class PlayerComponent : Component
 {
 
     GameObject player;
+
+    IObservable<Vector3> moveStream;
+
+    public PlayerComponent()
+    {
+        moveStream = Observable.EveryUpdate()
+            .Where(_ => GameManager.Instance.STATE == GameState.RUNNING)
+            .Select(_ => player.transform.position);
+            //.DistinctUntilChanged();
+    }
+
+
+
+    public void Subscribe(Action<Vector3> action)
+    {
+        moveStream.Subscribe(action);
+    }
 
     public void UpdateState(GameState state)
     {
@@ -14,27 +31,42 @@ public class PlayerComponent : Component
         {
             case GameState.INIT:
                 player = ObjectPool.Instance.GetObject(PoolObjectType.Player);
-                
+
                 GameManager.Instance.GetGameBaseComponent<InputComponent>().Subscribe(Move);
 
                 break;
             case GameState.STANDBY:
-                player.transform.position = Vector3.zero;
+                Reset();
                 break;
             default:
                 break;
         }
     }
 
+    void Reset()
+    {
+        player.transform.position = Vector3.zero;
+        player.transform.localEulerAngles = Vector3.zero;
+    }
+
     void Move(Direction direction)
     {
-        Vector3 pos = player.transform.position + GetConvertedDirectionV3(direction);
-
-        player.transform.DOScaleY(.7f, .08f).OnComplete(() =>
+        player.transform.DOScaleY(.8f, .08f).OnComplete(() =>
         {
+            player.transform.DOScaleY(1, .32f);
+
+            Vector3 pos = player.transform.position;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(player.transform.position + Vector3.up, GetConvertedDirectionV3(direction), out hit, 1f))
+                Debug.Log(hit.collider.name);
+            else
+                pos += GetConvertedDirectionV3(direction);
+
             player.transform.DOLocalJump(pos, 1, 1, .32f);
-            player.transform.DOScaleY(1, .08f);
-            player.transform.DOLocalRotate(GetConvertedRotateV3(direction),.32f,RotateMode.Fast);
+
+            player.transform.DOLocalRotate(GetConvertedRotateV3(direction), .32f, RotateMode.Fast);
         });
     }
 
@@ -70,20 +102,5 @@ public class PlayerComponent : Component
             default:
                 return Vector3.zero;
         }
-    }
-
-    private IObservable<Vector3> moveStream;
-
-    public PlayerComponent()
-    {
-        moveStream = Observable.EveryUpdate()
-        .Where(_ => GameManager.Instance.STATE == GameState.RUNNING)
-        .Select(_ => player.transform.position)
-        .DistinctUntilChanged();
-    }
-
-    public void Subscribe(Action<Vector3> action)
-    {
-        moveStream.Subscribe(action);
     }
 }

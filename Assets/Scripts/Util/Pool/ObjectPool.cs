@@ -11,10 +11,12 @@ public class ObjectPool : MonoBehaviour
 
     Dictionary<PoolObjectType, Queue<GameObject>> poolObjectMap = new Dictionary<PoolObjectType, Queue<GameObject>>();
 
+    public int typeNums;
+
     private void Awake()
     {
         Instance = this;
-
+        typeNums = objectPoolData.prefabs.Count;
         Initialize();
     }
 

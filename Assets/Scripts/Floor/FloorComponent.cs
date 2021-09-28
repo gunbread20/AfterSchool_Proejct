@@ -16,16 +16,15 @@ public class FloorComponent : Component
         {
             case GameState.INIT:
                 GameManager.Instance.GetGameBaseComponent<InputComponent>()
-                .Subscribe(direction =>
-                {
-                    if (direction == Direction.Forward)
+                    .Subscribe(direction =>
                     {
-                        ReturnSingleFloor();
-                        CreateSingleFloor();
-                    }
+                        if(direction == Direction.Forward)
+                        {
+                            ReturnSingleFloor();
 
-                });
-                
+                            CreateSingleFloor();
+                        }
+                    });
                 break;
             case GameState.STANDBY:
                 CreateFloors();
@@ -35,20 +34,25 @@ public class FloorComponent : Component
                 break;
         }
     }
+
     void ReturnSingleFloor()
     {
+        
         floors[0].Reset();
         floors.RemoveAt(0);
     }
 
     void CreateSingleFloor()
     {
-        int type = floors.Count % 2;
-        //floors[floors.Count - 1].transform.position.z % 2;
-        Floor floor = ObjectPool.Instance.GetObject((PoolObjectType)type).GetComponent<Floor>();
+        Floor floor = ObjectPool.Instance.GetObject(GetRandomFloorType()).GetComponent<Floor>();
 
         floor.transform.position = GetNextPosition();
 
+        if (floor.transform.position.z > 0)
+        {
+            floor.Generate();
+        }
+        
         floors.Add(floor);
     }
 
@@ -57,22 +61,16 @@ public class FloorComponent : Component
         ClearFloors();
 
         for (int i = 0; i < floorCreateCount; i++)
-        {
-            int type = floors.Count % 2;
-
-            Floor floor = ObjectPool.Instance.GetObject((PoolObjectType)type).GetComponent<Floor>();
-
-            floor.transform.position = GetNextPosition();
-
-            floors.Add(floor);
-        }
+            CreateSingleFloor();
     }
 
     void ClearFloors()
     {
         for (int i = 0; i < floors.Count; i++)
+        {
             floors[i].Reset();
-
+        }
+        
         floors.Clear();
      }
 
@@ -85,6 +83,17 @@ public class FloorComponent : Component
                 return defaultFloorPos;
             default:
                 return floors[floors.Count - 1].transform.position + Vector3.forward;
+        }
+    }
+
+    PoolObjectType GetRandomFloorType()
+    {
+        if (floors.Count <= 0) return PoolObjectType.Floor_Type0;
+
+        else
+        {
+            return floors[floors.Count - 1].transform.position.z % 2 != 0 ?
+                PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
         }
     }
 }
