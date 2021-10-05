@@ -3,76 +3,46 @@ using UnityEngine;
 
 public class Grass : Floor
 {
+
+    [SerializeField]
+    PoolObjectType objectType;
+
     List<GameObject> trees = new List<GameObject>();
+
+    float[] floorPosArr = new float[] { -13, -12, -11, 11, 12, 13 };
 
     public override void Generate()
     {
+        CreateTrees();
+    }
+
+    public override void Reset()
+    {
         ReturnTrees();
 
-        CreateTrees();
+        ObjectPool.Instance.ReturnObject(objectType, gameObject);
     }
 
     void CreateTrees()
     {
-        int random = Random.Range(3, 5);
+        int random = Random.Range(3, 6);
 
-        for (int i = 0; i < 6; i++)
+        random += floorPosArr.Length;
+
+        for (int i = 0; i < random; i++)
         {
-            trees.Add(ObjectPool.Instance.GetObject((PoolObjectType)Random.Range(3, 6)));
+            GameObject tree = ObjectPool.Instance.GetObject((PoolObjectType)Random.Range(3, 6));
 
-            trees[trees.Count - 1].transform.SetParent(transform, true);
+            tree.transform.SetParent(transform, true);
+            tree.transform.position = i < floorPosArr.Length ? new Vector3(floorPosArr[i], 0, transform.position.z) : GetRandomTreePos();
 
-            switch (i)
-            {
-                case 0:
-                    trees[trees.Count - 1].transform.position = new Vector3(-13, 0, transform.position.z);
-
-                    break;
-                case 1:
-                    trees[trees.Count - 1].transform.position = new Vector3(-12, 0, transform.position.z);
-
-                    break;
-                case 2:
-                    trees[trees.Count - 1].transform.position = new Vector3(-11, 0, transform.position.z);
-
-                    break;
-
-                case 3:
-                    trees[trees.Count - 1].transform.position = new Vector3(11, 0, transform.position.z);
-
-                    break;
-                case 4:
-                    trees[trees.Count - 1].transform.position = new Vector3(12, 0, transform.position.z);
-
-                    break;
-                case 5:
-                    trees[trees.Count - 1].transform.position = new Vector3(13, 0, transform.position.z);
-
-                    break;
-
-                default:
-                    trees[trees.Count - 1].transform.position = GetRandomTreePos();
-                    break;
-            }
-            
+            trees.Add(tree);
         }
-
-        if (transform.position.z >= 1)
-        {
-            for (int i = 0; i < random; i++)
-            {
-                trees.Add(ObjectPool.Instance.GetObject((PoolObjectType)Random.Range(3, 6)));
-
-                trees[trees.Count - 1].transform.SetParent(transform, true);
-                trees[trees.Count - 1].transform.position = GetRandomTreePos();
-            }
-        }
-        
     }
 
     void ReturnTrees()
     {
-        for (int i = 0; i < trees.Count; i++)
+        for(int i = 0; i < trees.Count; i++)
         {
             switch (trees[i].tag)
             {
@@ -95,32 +65,28 @@ public class Grass : Floor
 
     Vector3 GetRandomTreePos()
     {
-        Vector3 ranPos = Vector3.zero;
+        Vector3 pos;
 
-        ranPos = new Vector3(Random.Range(-10, 11), 0, transform.position.z);
-
-        if (ranPos == Vector3.zero)
+        while (true)
         {
-            ranPos = GetRandomTreePos();
-        }
+            pos = new Vector3(Random.Range(-10, 11), 0, transform.position.z);
 
-        for (int i = 0; i < trees.Count; i++)
-        {
-            if (ranPos == trees[i].transform.position)
-            {
-                ranPos = GetRandomTreePos();
-            }
+            if (pos.x == 0 && pos.z == 0)
+                continue;
+
+            if (isOverlap(pos))
+                continue;
+
+            return pos;
         }
-        
-        return ranPos;
     }
 
-    [SerializeField]
-    PoolObjectType objectType;
-
-    public override void Reset()
+    bool isOverlap(Vector3 pos)
     {
-        ObjectPool.Instance.ReturnObject(objectType, gameObject);
-    }
+        for (int i = 0; i < trees.Count; i++)
+            if (Mathf.Approximately(trees[i].transform.position.x, pos.x))
+                return true;
 
+        return false;
+    }
 }

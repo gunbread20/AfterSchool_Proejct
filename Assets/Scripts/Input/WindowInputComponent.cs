@@ -1,7 +1,14 @@
 ﻿using System;
+using UniRx;
+using UnityEngine;
 
 public class WindowInputComponent : InputComponent
 {
+
+    public WindowInputComponent()
+    {
+
+    }
 
     public override Direction GetDirection(string keycode)
     {
@@ -21,4 +28,3 @@ public class WindowInputComponent : InputComponent
     }
 
 }
-

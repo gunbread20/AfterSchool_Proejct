@@ -15,16 +15,15 @@ public class FloorComponent : Component
         switch (state)
         {
             case GameState.INIT:
-                GameManager.Instance.GetGameBaseComponent<InputComponent>()
-                    .Subscribe(direction =>
+                GameManager.Instance.GetGameBaseComponent<PlayerComponent>().Subscribe(pos =>
+                {
+                    if (pos.z > floors[12].transform.position.z)
                     {
-                        if(direction == Direction.Forward)
-                        {
-                            ReturnSingleFloor();
+                        ClearSingleFloor();
 
-                            CreateSingleFloor();
-                        }
-                    });
+                        CreateSingleFloor();
+                    }
+                });
                 break;
             case GameState.STANDBY:
                 CreateFloors();
@@ -35,11 +34,12 @@ public class FloorComponent : Component
         }
     }
 
-    void ReturnSingleFloor()
+    void CreateFloors()
     {
-        
-        floors[0].Reset();
-        floors.RemoveAt(0);
+        ClearAllFloor();
+
+        for (int i = 0; i < floorCreateCount; i++)
+            CreateSingleFloor();
     }
 
     void CreateSingleFloor()
@@ -53,24 +53,20 @@ public class FloorComponent : Component
         floors.Add(floor);
     }
 
-    void CreateFloors()
+    void ClearSingleFloor()
     {
-        ClearFloors();
+        floors[0].Reset();
 
-        for (int i = 0; i < floorCreateCount; i++)
-            CreateSingleFloor();
+        floors.RemoveAt(0);
     }
 
-    void ClearFloors()
+    void ClearAllFloor()
     {
         for (int i = 0; i < floors.Count; i++)
-        {
             floors[i].Reset();
-        }
-        
+
         floors.Clear();
      }
-
 
     Vector3 GetNextPosition()
     {
@@ -85,12 +81,18 @@ public class FloorComponent : Component
 
     PoolObjectType GetRandomFloorType()
     {
-        if (floors.Count <= 0) return PoolObjectType.Floor_Type0;
-
+        if (floors.Count < (floorCreateCount / 2))
+            return floors.Count % 2 == 0 ? PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
         else
         {
-            return floors[floors.Count - 1].transform.position.z % 2 != 0 ?
-                PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
+            if (Random.Range(0, 100) < 80)
+            {
+                return floors[floors.Count - 1].transform.position.z % 2 != 0 ? PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
+            }
+            else
+            {
+                return PoolObjectType.Road;
+            }
         }
     }
 }

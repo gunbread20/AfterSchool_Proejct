@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
 
     public GameState STATE
     {
+        set
+        {
+            GameState State = new GameState();
+            state = State;
+        }
         get
         {
             return state;
@@ -25,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
 
-        components.Add(new UiComponent());
+        components.Add (new UiComponent());
         components.Add(new FloorComponent());
         components.Add(new WindowInputComponent());
         components.Add(new PlayerComponent());
