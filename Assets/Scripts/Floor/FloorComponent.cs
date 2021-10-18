@@ -86,14 +86,24 @@ public class FloorComponent : Component
             return floors.Count % 2 == 0 ? PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
         else
         {
-            if (Random.Range(0, 100) < 80)
-            {
-                return floors[floors.Count - 1].transform.position.z % 2 != 0 ? PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
-            }
-            else
-            {
-                return Random.Range(0, 101) < 50 ? PoolObjectType.TrainTrack : PoolObjectType.Road;
-            }
+            //if (Random.Range(0, 100) < 80)
+            //{
+            //    return floors[floors.Count - 1].transform.position.z % 2 != 0 ? PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
+            //}
+            //else
+            //{
+            //    int random = Random.Range(0, 101);
+
+            //    if (random < 33)
+            //        return PoolObjectType.Road;
+            //    else if (random < 66)
+            //        return PoolObjectType.TrainTrack;
+            //    else
+            //        return PoolObjectType.River;
+
+            //}
+
+            return PoolObjectType.River;
         }
     }
 }

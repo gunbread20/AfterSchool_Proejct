@@ -13,6 +13,11 @@
     Car_Type2,
 
     Car_Type3,
-    Eagle
-    ,TrainTrack
+    Eagle,
+    TrainTrack,
+    River,
+
+    Log_Type0,
+    Log_Type1,
+    Log_Type2
 }

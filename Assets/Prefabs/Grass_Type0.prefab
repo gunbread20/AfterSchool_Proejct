@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7094302683625132536}
   - component: {fileID: 6849019538911811519}
   - component: {fileID: -6910741930951511596}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Grass_Type0
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,6 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &6849019538911811519
 BoxCollider:
   m_ObjectHideFlags: 0

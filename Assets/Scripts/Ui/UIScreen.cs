@@ -19,6 +19,11 @@ public class UIScreen : MonoBehaviour
         canvasGroup.blocksRaycasts = open;
     }
 
+    public virtual void Init()
+    {
+
+    }
+
     protected virtual void OnStart()
     {
         isFirst = false;

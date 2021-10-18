@@ -19,11 +19,20 @@ public class UiComponent : Component
         switch (state)
         {
             case GameState.INIT:
+                InitAllScreens();
                 CloseAllScreens();
                 break;
             default:
                 ActiveScreen(state);
                 break;
+        }
+    }
+
+    void InitAllScreens()
+    {
+        foreach (var screen in screens)
+        {
+            screen.Init();
         }
     }
 

@@ -1,47 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 using DG.Tweening;
 
 public class EagleComponent : Component
 {
-
-    GameObject engle;
-
-    public EagleComponent()
-    {
-
-    }
+    GameObject eagle;
 
     public void UpdateState(GameState state)
     {
         switch (state)
         {
             case GameState.INIT:
-                GameManager.Instance.GetGameBaseComponent<PlayerComponent>().Subscribe(Kill);
-
-                break;
-            default:
+                GameManager.Instance.GetGameBaseComponent<PlayerComponent>().
+                    Subscribe(Kill);
                 break;
         }
     }
 
-    public void Kill(GameObject player)
+    void Kill(GameObject player)
     {
         Debug.Log("Kill");
 
-        engle = ObjectPool.Instance.GetObject(PoolObjectType.Eagle);
-
         GameManager.Instance.UpdateState(GameState.OVER);
 
-        engle.transform.position = player.transform.position + (Vector3.up * 2) + (Vector3.right * 25);
+        eagle = ObjectPool.Instance.GetObject(PoolObjectType.Eagle);
 
-        engle.transform.DOMoveX(player.transform.position.x, .75f).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            player.transform.SetParent(engle.transform, true);
+        eagle.transform.position =
+            player.transform.position + (Vector3.up * 2)
+            + (Vector3.forward * 25);
 
-            engle.transform.DOMoveX(player.transform.position.x - 25, .75f).SetEase(Ease.Linear).OnComplete(() =>
+        eagle.transform.DOMoveZ(player.transform.position.z, .75f)
+            .SetEase(Ease.Linear).OnComplete(() =>
             {
-                ObjectPool.Instance.ReturnObject(PoolObjectType.Eagle, engle);
+                player.transform.SetParent(eagle.transform, true);
+
+                eagle.transform.DOMoveZ(player.transform.position.z - 25, .75f)
+                .SetEase(Ease.Linear).OnComplete(() =>
+                {
+                    ObjectPool.Instance.ReturnObject(PoolObjectType.Eagle, eagle);
+                });
             });
-        });
     }
 }
+

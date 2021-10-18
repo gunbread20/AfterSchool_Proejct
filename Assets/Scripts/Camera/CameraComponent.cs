@@ -7,7 +7,6 @@ public class CameraComponent : Component
     private Camera camera;
 
     private Vector3 distance = new Vector3(2, 10, -5);
-    private Vector3 originPos;
 
     public CameraComponent()
     {
@@ -19,9 +18,8 @@ public class CameraComponent : Component
         switch (state)
         {
             case GameState.INIT:
-                originPos = camera.transform.position;
                 GameManager.Instance.GetGameBaseComponent<PlayerComponent>().Subscribe(Follow);
-                GameManager.Instance.GetGameBaseComponent<PlayerComponent>().Subscribe(Foucs);
+                GameManager.Instance.GetGameBaseComponent<PlayerComponent>().Subscribe(Focus);
                 break;
             case GameState.STANDBY:
                 Reset();
@@ -30,6 +28,14 @@ public class CameraComponent : Component
             default:
                 break;
         }
+    }
+
+    void Focus(GameObject player)
+    {
+        Vector3 pos = player.transform.position;
+
+        camera.DOOrthoSize(6, 1f);
+        camera.transform.DOMove(pos + distance, 1f);
     }
 
     void Follow(Vector3 v3)
@@ -46,17 +52,9 @@ public class CameraComponent : Component
         camera.transform.position = Vector3.Lerp(camera.transform.position, v3, Time.deltaTime * 5f);
     }
 
-    public void Foucs(GameObject player)
-    {
-        Vector3 pos = player.transform.position;
-
-        camera.DOOrthoSize(6, 1f);
-        camera.transform.DOMove(pos + distance, 1f);
-    }
-
     void Reset()
     {
-        camera.DOOrthoSize(9, 1f);
         camera.transform.position = distance;
+        camera.orthographicSize = 7.5f;
     }
 }

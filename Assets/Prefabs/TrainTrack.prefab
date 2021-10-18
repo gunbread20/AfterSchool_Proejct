@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 804706741}
   - component: {fileID: 804706744}
   - component: {fileID: 804706743}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7994685482074526811}
   - component: {fileID: 8493741111040786960}
   - component: {fileID: 5994874629440690598}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 5627445530705888117}
   - component: {fileID: 2212851527147717042}
   - component: {fileID: 3022454269245072357}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 9216261570500192854}
   - component: {fileID: 6282963818085438236}
   - component: {fileID: 7355548539067201416}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Train
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 7628195025837934492}
   - component: {fileID: 5700665714230616057}
   - component: {fileID: 3629270671222754851}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 96762745759369118}
   - component: {fileID: 5951078712238481268}
   - component: {fileID: 1082812713065414806}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 7974876200165950892}
   - component: {fileID: 2096146901304412308}
   - component: {fileID: 8564305778945745609}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,7 +577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1225380777077205408}
   - component: {fileID: 8274044834299231625}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Train
   m_TagString: Train
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 7108928326952123148}
   - component: {fileID: 9020541626627738789}
   - component: {fileID: 1690319037352128877}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 6799095993675253421}
   - component: {fileID: 6297208437967279198}
   - component: {fileID: 1170088995007796824}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 8880458110509550622}
   - component: {fileID: 4242715804166393402}
   - component: {fileID: 5948804274604712554}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 255733293555561372}
   - component: {fileID: 276235418206105935}
   - component: {fileID: 2137650420718526048}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 2354089534509809632}
   - component: {fileID: 2354089534509809567}
   - component: {fileID: 2354089534509809566}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: StickPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 2354089536224122553}
   - component: {fileID: 2354089536224122548}
   - component: {fileID: 2354089536224122551}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Bell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 82844266735503257}
   - component: {fileID: 2333356773484157939}
   - component: {fileID: 67291522603247906}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 5398203543959732797}
   - component: {fileID: 5448711217087107512}
   - component: {fileID: 1790350140190777626}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1271,7 +1271,7 @@ GameObject:
   - component: {fileID: 3838808030080057019}
   - component: {fileID: 3838808030080057014}
   - component: {fileID: 3838808030080057013}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Bell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1352,7 +1352,7 @@ GameObject:
   - component: {fileID: 3838808030252953483}
   - component: {fileID: 3838808030252953478}
   - component: {fileID: 3838808030252953477}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: StickPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1434,7 +1434,7 @@ GameObject:
   - component: {fileID: 3838808030515944716}
   - component: {fileID: 3838808030515944723}
   - component: {fileID: 3838808030515944722}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1530,7 +1530,7 @@ GameObject:
   - component: {fileID: 3838808030692039234}
   - component: {fileID: 3838808030692039293}
   - component: {fileID: 3838808030692039292}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: StickPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1611,7 +1611,7 @@ GameObject:
   - component: {fileID: 3838808030783679403}
   - component: {fileID: 3838808030783679398}
   - component: {fileID: 3838808030783679397}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: StickPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1692,7 +1692,7 @@ GameObject:
   - component: {fileID: 3838808030885421423}
   - component: {fileID: 3838808030885421418}
   - component: {fileID: 3838808030885421417}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: StickPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1773,7 +1773,7 @@ GameObject:
   - component: {fileID: 3838808031225803008}
   - component: {fileID: 3838808031225803011}
   - component: {fileID: 3838808031225803010}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: StickPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1854,7 +1854,7 @@ GameObject:
   - component: {fileID: 3838808031285492859}
   - component: {fileID: 3838808031285492854}
   - component: {fileID: 3838808031285492853}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: StickPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1935,7 +1935,7 @@ GameObject:
   - component: {fileID: 3838808032065034210}
   - component: {fileID: 3838808032065034141}
   - component: {fileID: 3838808032065034140}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: StickPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2016,7 +2016,7 @@ GameObject:
   - component: {fileID: 4050362481129859985}
   - component: {fileID: 4050362481129859991}
   - component: {fileID: 4050362481129859990}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Train
   m_Icon: {fileID: 0}
@@ -2097,7 +2097,7 @@ GameObject:
   - component: {fileID: 2668053377955587814}
   - component: {fileID: 5650827499599775813}
   - component: {fileID: 4160929434912213728}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2178,7 +2178,7 @@ GameObject:
   - component: {fileID: 4021514873457307920}
   - component: {fileID: 2240652020589348954}
   - component: {fileID: 3332064512946629838}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2259,7 +2259,7 @@ GameObject:
   - component: {fileID: 4021514872227574914}
   - component: {fileID: 2240652021809089992}
   - component: {fileID: 3332064513629497692}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2340,7 +2340,7 @@ GameObject:
   - component: {fileID: 4021514872513116152}
   - component: {fileID: 2240652021524467378}
   - component: {fileID: 3332064513881614886}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2421,7 +2421,7 @@ GameObject:
   - component: {fileID: 4021514871593309187}
   - component: {fileID: 2240652021510647113}
   - component: {fileID: 3332064513129449949}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2502,7 +2502,7 @@ GameObject:
   - component: {fileID: 4021514871580874140}
   - component: {fileID: 2240652021397286102}
   - component: {fileID: 3332064513200900162}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2582,7 +2582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5475712197297403104}
   - component: {fileID: 5475712197297403105}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Notify Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2676,7 +2676,7 @@ GameObject:
   - component: {fileID: 6642532231362892535}
   - component: {fileID: 7638454544834722448}
   - component: {fileID: 6335796552513531044}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2757,7 +2757,7 @@ GameObject:
   - component: {fileID: 6153209146990410742}
   - component: {fileID: 6153209146990410731}
   - component: {fileID: 6153209146990410728}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2838,7 +2838,7 @@ GameObject:
   - component: {fileID: 4887737635075460708}
   - component: {fileID: 4553909277794748135}
   - component: {fileID: 7928965737838975614}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2917,7 +2917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2447511607879220598}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2956,7 +2956,7 @@ GameObject:
   - component: {fileID: 7592263514052532319}
   - component: {fileID: 4223422949033836725}
   - component: {fileID: 7425321053963067223}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3037,7 +3037,7 @@ GameObject:
   - component: {fileID: 340269243895232226}
   - component: {fileID: 5702690293635929724}
   - component: {fileID: 2405187130664669498}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3118,7 +3118,7 @@ GameObject:
   - component: {fileID: 8397797383120523784}
   - component: {fileID: 850319407338799597}
   - component: {fileID: 993989878830591045}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3199,7 +3199,7 @@ GameObject:
   - component: {fileID: 6519878571683414030}
   - component: {fileID: 6034051149300588687}
   - component: {fileID: 3230636575691855260}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3280,7 +3280,7 @@ GameObject:
   - component: {fileID: 5876316414447052350}
   - component: {fileID: 5598680309472264457}
   - component: {fileID: 7237556843560524957}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3361,7 +3361,7 @@ GameObject:
   - component: {fileID: 8694442492361767551}
   - component: {fileID: 2683409484000394833}
   - component: {fileID: 2599588669733239873}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3442,7 +3442,7 @@ GameObject:
   - component: {fileID: 5149018987194387439}
   - component: {fileID: 5340831322488088243}
   - component: {fileID: 6124563395522095319}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3521,8 +3521,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8187857387212267133}
-  - component: {fileID: -6419785949835056897}
-  m_Layer: 8
+  - component: {fileID: 2408098888369765057}
+  m_Layer: 2
   m_Name: TrainTrack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3549,7 +3549,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6419785949835056897
+--- !u!114 &2408098888369765057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3558,13 +3558,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8187857387212267129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 469cb19d1ab61fa4aa8d7e480adb57ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 32d132a7c966bc546aed04e8c56d77ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 12
   train: {fileID: 1225380777077205409}
-  notifylight: {fileID: 5475712197297403105}
-  bells: {fileID: 8326248210524122716}
+  bell: {fileID: 8326248210524122716}
+  notifyLight: {fileID: 5475712197297403105}
+  objectType: 12
 --- !u!1 &8187857388849073580
 GameObject:
   m_ObjectHideFlags: 0
@@ -3577,9 +3577,9 @@ GameObject:
   - component: {fileID: 8187857388849073579}
   - component: {fileID: 8187857388849073578}
   - component: {fileID: 2528739566390738930}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Road
-  m_TagString: Grass1
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -3669,7 +3669,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 137168209945878451}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Bells
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3703,7 +3703,7 @@ GameObject:
   - component: {fileID: 7098651586016060653}
   - component: {fileID: 4360448704300934287}
   - component: {fileID: 5381432374091213678}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3784,7 +3784,7 @@ GameObject:
   - component: {fileID: 1343860833208168632}
   - component: {fileID: 7760456708040427363}
   - component: {fileID: 285889330436873347}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3863,7 +3863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8639740287741286132}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: TrafficLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3895,7 +3895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8639740288359068101}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3933,7 +3933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8639740288448357362}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3989,7 +3989,7 @@ GameObject:
   - component: {fileID: 2858517129648790407}
   - component: {fileID: 1889874437025586528}
   - component: {fileID: 2813036227017686703}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
