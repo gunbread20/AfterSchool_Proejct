@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3071550953545048774}
   - component: {fileID: 3088167494905897356}
   - component: {fileID: 3098429054458204982}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,7 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075377097809607640
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +90,7 @@ GameObject:
   - component: {fileID: 3071550953715915954}
   - component: {fileID: 3088167499851905000}
   - component: {fileID: 3098429025079067354}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +134,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -161,7 +158,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075377098784300026
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3071550954114297600}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +203,7 @@ GameObject:
   - component: {fileID: 3071550950337277316}
   - component: {fileID: 3088167496367268448}
   - component: {fileID: 3098429024917364212}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +247,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -276,7 +271,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075377099397270302
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +282,7 @@ GameObject:
   - component: {fileID: 3071550952815472318}
   - component: {fileID: 3088167497018341606}
   - component: {fileID: 3098429056770348832}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +326,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -357,7 +350,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075377100207613818
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +361,7 @@ GameObject:
   - component: {fileID: 3071550952714746112}
   - component: {fileID: 3088167500059413662}
   - component: {fileID: 3098429057430175552}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +405,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -438,7 +429,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075377100437867416
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +440,7 @@ GameObject:
   - component: {fileID: 3071550953940317164}
   - component: {fileID: 3088167496893138934}
   - component: {fileID: 3098429056646442494}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +484,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -519,7 +508,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075377100712225776
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +519,7 @@ GameObject:
   - component: {fileID: 3071550955084578222}
   - component: {fileID: 3088167498021388878}
   - component: {fileID: 3098429054194911202}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +563,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -600,7 +587,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075377101126715688
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3071550952925016758}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +632,7 @@ GameObject:
   - component: {fileID: 3071550952857590868}
   - component: {fileID: 3088167495370256870}
   - component: {fileID: 3098429057131659026}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -690,7 +676,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -715,7 +700,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075504087352567560
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +711,7 @@ GameObject:
   - component: {fileID: 3075504087352854790}
   - component: {fileID: 3075504087351433804}
   - component: {fileID: 3075504087350381624}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,7 +755,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -796,7 +779,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075504087352567792
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3075504087352739864}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -840,7 +822,7 @@ GameObject:
   - component: {fileID: 3075504087352857680}
   - component: {fileID: 3075504087351466660}
   - component: {fileID: 3075504087350394666}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -884,7 +866,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -909,7 +890,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075504087352589710
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,7 +899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3075504087352780834}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Windows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,7 +934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3075504087352760082}
   - component: {fileID: 5589395559557156336}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Car_Type0
   m_TagString: Car
   m_Icon: {fileID: 0}
@@ -987,7 +967,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 2, z: 1}
+  m_Size: {x: 1.5, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &3075504087352599032
 GameObject:
@@ -1000,7 +980,7 @@ GameObject:
   - component: {fileID: 3075504087352825476}
   - component: {fileID: 3075504087351428468}
   - component: {fileID: 3075504087350424876}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1044,7 +1024,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1069,7 +1048,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075504087352653038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,7 +1059,7 @@ GameObject:
   - component: {fileID: 3075504087352768854}
   - component: {fileID: 3075504087351442106}
   - component: {fileID: 3075504087350420926}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1125,7 +1103,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1150,7 +1127,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075504087352653308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,7 +1138,7 @@ GameObject:
   - component: {fileID: 3075504087352822842}
   - component: {fileID: 3075504087351440132}
   - component: {fileID: 3075504087350392888}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1206,7 +1182,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1231,7 +1206,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075504087352662164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,7 +1217,7 @@ GameObject:
   - component: {fileID: 3075504087352745596}
   - component: {fileID: 3075504087351531422}
   - component: {fileID: 3075504087350855860}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1287,7 +1261,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1312,7 +1285,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3075504087352662276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,7 +1294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3075504087352821140}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}

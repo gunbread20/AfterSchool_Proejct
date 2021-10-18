@@ -1,4 +1,4 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,10 +29,10 @@ public class Road : Floor
 
         cars.Add(new Car(carType));
 
-        cars[cars.Count - 1].car.transform.position = new Vector3(15 * direction, 0, transform.position.z);
+        cars[cars.Count - 1].car.transform.position = new Vector3(17 * direction, 0, transform.position.z);
         cars[cars.Count - 1].car.transform.GetChild(0).localEulerAngles = new Vector3(0, direction == 1 ? 0 : 180, 0);
 
-        cars[cars.Count - 1].car.transform.DOLocalMoveX(-15 * direction, speed).SetDelay(Random.Range(10, 40) * .1f).SetEase(Ease.Linear)
+        cars[cars.Count - 1].car.transform.DOLocalMoveX(-17 * direction, speed).SetDelay(Random.Range(10, 40) * .1f).SetEase(Ease.Linear)
             .OnPlay(() =>
             {
                 CreateCarLoop();
@@ -59,7 +59,8 @@ public class Road : Floor
 
     public override void Reset()
     {
-        AllReturnCars();
+        AllReturnCars(); 
+
         ObjectPool.Instance.ReturnObject(objectType, gameObject);
     }
 

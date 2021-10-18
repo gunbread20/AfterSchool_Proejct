@@ -11,11 +11,6 @@ public class GameManager : MonoBehaviour
 
     public GameState STATE
     {
-        set
-        {
-            GameState State = new GameState();
-            state = State;
-        }
         get
         {
             return state;
@@ -35,6 +30,7 @@ public class GameManager : MonoBehaviour
         components.Add(new WindowInputComponent());
         components.Add(new PlayerComponent());
         components.Add(new CameraComponent());
+        components.Add(new EagleComponent());
 
         UpdateState(GameState.INIT);
     }

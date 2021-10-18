@@ -8,7 +8,6 @@ public class PlayerComponent : Component
 {
 
     GameObject player;
-    Collider carHit;
 
     IObservable<Vector3> moveStream;
 
@@ -24,6 +23,13 @@ public class PlayerComponent : Component
         moveStream.Subscribe(action);
     }
 
+    IObservable<GameObject> overStream;
+
+    public void Subscribe(Action<GameObject> action)
+    {
+        overStream.Subscribe(action);
+    }
+
     public void UpdateState(GameState state)
     {
         switch (state)
@@ -31,36 +37,41 @@ public class PlayerComponent : Component
             case GameState.INIT:
                 player = ObjectPool.Instance.GetObject(PoolObjectType.Player);
 
-                GameManager.Instance.GetGameBaseComponent<InputComponent>().Subscribe(Move);
+                overStream = player.transform.GetChild(0).OnBecameInvisibleAsObservable()
+                    .Where(_ => GameManager.Instance.STATE == GameState.RUNNING && player != null && ObjectPool.Instance != null)
+                    .Select(_ => player);
 
-                player.OnTriggerEnterAsObservable().Subscribe(collider =>
-                {
-                    switch (collider.tag)
-                    {
-                        case "Car":
+                player.OnTriggerEnterAsObservable()
+                    .Subscribe(collider =>
+                        {
                             if (GameManager.Instance.STATE != GameState.RUNNING)
-                            {                               
                                 return;
+
+                            switch (collider.tag)
+                            {
+                                case "Car":
+                                    GameManager.Instance.UpdateState(GameState.OVER);
+
+                                    player.transform.DOScaleY(.1f, .16f);
+                                    break;
+
+                                case "Train":
+                                    GameManager.Instance.UpdateState(GameState.OVER);
+
+                                    player.transform.DOScaleY(.1f, .16f);
+                                    break;
+
+                                default:
+                                    break;
                             }
-                               
-                            GameManager.Instance.UpdateState(GameState.OVER);
-                            player.transform.DOScaleY(.1f, .16f);
-                            break;
-                        default:
-                            break;
-                    }
-                });
+                        });
+
+                GameManager.Instance.GetGameBaseComponent<InputComponent>().Subscribe(Move);
 
                 break;
             case GameState.STANDBY:
                 Reset();
                 break;
-
-            //case GameState.OVER:
-                
-            //    Reset();
-            //    break;
-
             default:
                 break;
         }
@@ -68,11 +79,11 @@ public class PlayerComponent : Component
 
     void Reset()
     {
-        player.transform.SetParent(null);
+        player.transform.SetParent(null, true);
 
-        player.transform.localScale = Vector3.one;
         player.transform.position = Vector3.zero;
         player.transform.localEulerAngles = Vector3.zero;
+        player.transform.localScale = Vector3.one;
     }
 
     void Move(Direction direction)
@@ -87,29 +98,47 @@ public class PlayerComponent : Component
 
             RaycastHit hit;
 
-            //if (Physics.Raycast(player.transform.position + Vector3.up, GetConvertedDirectionV3(direction), out hit, 1f))
-            //    Debug.Log(hit.collider.name);
-            //else
-            //    pos += GetConvertedDirectionV3(direction);
-
             if (Physics.Raycast(player.transform.position + Vector3.up, GetConvertedDirectionV3(direction), out hit, 1f))
             {
+                string tag = hit.collider.tag;
+
+                Vector3 movePos;
+                Vector3 scale;
+
                 switch (hit.collider.tag)
                 {
                     case "Car":
-                        Vector3 movePos = hit.normal; // 충돌 법선
-                        movePos.z *= .5f; // 자동차 앞뒤 포지션 수정
+                        movePos = hit.normal;
+                        movePos.z *= .5f;
 
-                        Vector3 scale = Vector3.one; // 플레이어 크기 초기값
-                        scale.z *= .25f; // 찌부러진 플레이어 처럼 보이도록 크기 조절
+                        scale = Vector3.one;
+                        scale.z *= Math.Abs(scale.z) > 0 ? .25f : 1;
 
-                        player.transform.DOKill(); // 플레이어 Dotween 움직임 모두 중단.
+                        player.transform.DOKill();
 
-                        player.transform.SetParent(hit.collider.transform, true); // 플레이어 자동차에 하위 객체로 가도록 수정
+                        player.transform.SetParent(hit.collider.transform, true);
 
-                        player.transform.DOScale(scale, .16f); // 크기 수정
+                        player.transform.DOScale(scale, .16f);
 
-                        player.transform.DOLocalMove(movePos, .16f); // 플레이어 움직임 시작
+                        player.transform.DOLocalMove(movePos, .16f);
+
+                        player.transform.DOLocalRotate(GetConvertedRotateV3(direction), .32f, RotateMode.Fast);
+
+                        GameManager.Instance.UpdateState(GameState.OVER);
+                        return;
+                    case "Train":
+                        movePos = hit.point;
+
+                        scale = Vector3.one;
+                        scale.z *= Math.Abs(scale.z) > 0 ? .25f : 1;
+
+                        player.transform.DOKill();
+
+                        player.transform.SetParent(hit.collider.transform, true);
+
+                        player.transform.DOScale(scale, .16f);
+
+                        player.transform.DOMove(movePos, .16f);
 
                         player.transform.DOLocalRotate(GetConvertedRotateV3(direction), .32f, RotateMode.Fast);
 
@@ -120,9 +149,7 @@ public class PlayerComponent : Component
                 }
             }
             else
-            {
                 pos += GetConvertedDirectionV3(direction);
-            }
 
             player.transform.DOJump(pos, 1, 1, .32f).OnComplete(() =>
              {

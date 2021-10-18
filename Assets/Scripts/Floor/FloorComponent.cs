@@ -24,6 +24,7 @@ public class FloorComponent : Component
                         CreateSingleFloor();
                     }
                 });
+
                 break;
             case GameState.STANDBY:
                 CreateFloors();
@@ -91,7 +92,7 @@ public class FloorComponent : Component
             }
             else
             {
-                return PoolObjectType.Road;
+                return Random.Range(0, 101) < 50 ? PoolObjectType.TrainTrack : PoolObjectType.Road;
             }
         }
     }

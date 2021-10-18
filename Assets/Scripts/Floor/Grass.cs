@@ -9,7 +9,7 @@ public class Grass : Floor
 
     List<GameObject> trees = new List<GameObject>();
 
-    float[] floorPosArr = new float[] { -13, -12, -11, 11, 12, 13 };
+    float[] floorPosArr = new float[] { -15, -14, -13, -12, -11, 11, 12, 13 };
 
     public override void Generate()
     {
