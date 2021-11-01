@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using UnityEditor;
 
 public class PlayerComponent : Component
 {
@@ -10,7 +11,7 @@ public class PlayerComponent : Component
     GameObject player;
 
     IObservable<Vector3> moveStream;
-
+    IObservable<Collider> parentName;
     IObservable<GameObject> overStream;
 
     public PlayerComponent()
@@ -30,6 +31,11 @@ public class PlayerComponent : Component
         overStream.Subscribe(action);
     }
 
+    public void Subscribe(Action<Collider> action)
+    {
+        parentName.Subscribe(action);
+    }
+
     public void UpdateState(GameState state)
     {
         switch (state)
@@ -39,14 +45,12 @@ public class PlayerComponent : Component
 
                 overStream = player.transform.GetChild(0)
                     .OnBecameInvisibleAsObservable()
-                    .Where(_ => GameManager.Instance.STATE
-                    == GameState.RUNNING)
-                    .Where(_ => ObjectPool.Instance != null
-                        && player != null)
-                    .Select(_ => player);   
+                    .Where(_ => GameManager.Instance.STATE == GameState.RUNNING)
+                    .Select(_ => player);
 
-                player.OnTriggerEnterAsObservable()
-                    .Subscribe(collider =>
+                parentName = player.OnTriggerEnterAsObservable();
+
+                parentName.Subscribe(collider =>
                         {
                             if (GameManager.Instance.STATE != GameState.RUNNING)
                                 return;
@@ -81,7 +85,8 @@ public class PlayerComponent : Component
 
     void Reset()
     {
-        player.transform.SetParent(ObjectPool.Instance.transform, true);
+        player.transform.SetParent(
+            ObjectPool.Instance.transform, true);
 
         player.transform.position = Vector3.zero;
         player.transform.localEulerAngles = Vector3.zero;
@@ -92,7 +97,6 @@ public class PlayerComponent : Component
     {
         if (direction == Direction.None) return;
 
-
         player.transform.DOScaleY(.8f, .08f).OnComplete(() =>
         {
             player.transform.DOScaleY(1, .08f);
@@ -101,18 +105,22 @@ public class PlayerComponent : Component
 
             RaycastHit hit;
 
-
-
-            if (Physics.Raycast(player.transform.position + Vector3.up, GetConvertedDirectionV3(direction) + Vector3.down, out hit, 2f 
-                , ~(1 << LayerMask.NameToLayer("Ignore Raycast")))) 
+            if (Physics.Raycast(player.transform.position + Vector3.up,
+                    GetConvertedDirectionV3(direction)
+                    + Vector3.down, out hit, Mathf.Sqrt(2)
+                    , ~(1 << LayerMask.NameToLayer(
+                        "Ignore Raycast"))))
             {
+                Vector3 movePos;
+                Vector3 scale;
+
                 switch (hit.collider.tag)
                 {
                     case "Car":
-                        Vector3 movePos = hit.normal;
+                        movePos = hit.normal;
                         movePos.z *= .5f;
 
-                        Vector3 scale = Vector3.one;
+                        scale = Vector3.one;
                         scale.z *= Math.Abs(scale.z) > 0 ? .25f : 1;
 
                         player.transform.DOKill();
@@ -127,7 +135,6 @@ public class PlayerComponent : Component
 
                         GameManager.Instance.UpdateState(GameState.OVER);
                         return;
-
                     case "Train":
                         movePos = hit.point;
 
@@ -135,17 +142,35 @@ public class PlayerComponent : Component
 
                         player.transform.DOKill();
 
-                        player.transform.SetParent(hit.collider.transform, true);
+                        player.transform.SetParent(
+                            hit.collider.transform, true);
 
                         player.transform.DOScale(scale, .16f);
 
                         player.transform.DOMove(movePos, .16f);
 
-                        player.transform.DOLocalRotate(GetConvertedRotateV3(direction), .32f, RotateMode.Fast);
+                        player.transform.DOLocalRotate(
+                            GetConvertedRotateV3(direction), .32f,
+                            RotateMode.Fast);
 
                         GameManager.Instance.UpdateState(GameState.OVER);
                         return;
+                    case "Log":
+                        player.transform.DOKill();
 
+                        player.transform.SetParent(
+                            hit.collider.transform, true);
+
+                        player.transform
+                        .DOLocalJump(
+                            new Vector3(0, .3f, 0),
+                            1, 1, .32f);
+                        player.transform.DOScaleY(1, .32f);
+
+                        player.transform.DOLocalRotate(
+                                 GetConvertedRotateV3(direction), .32f,
+                                 RotateMode.Fast);
+                        return;
                     case "Water":
                         GameManager.Instance.UpdateState(GameState.OVER);
 
@@ -169,49 +194,12 @@ public class PlayerComponent : Component
                                 break;
                         }
                         return;
-
-                    case "Log":
-                        player.transform.DOKill();
-
-                        player.transform.SetParent(hit.collider.transform, true);
-
-                        player.transform.DOLocalJump(new Vector3(0, .3f, 0), 1, 1, .32f);
-                        player.transform.DOScaleY(1, .32f);
-                        player.transform.DOLocalRotate(GetConvertedRotateV3(direction), .32f, RotateMode.Fast);
-                        return;
-
-                    case "Tree_Type2":
-                        movePos = hit.normal;
-                        movePos.z *= .5f;
-                        movePos.y = .5f;
-
-                        scale = Vector3.one;
-                        scale.z *= Math.Abs(scale.z) > 0 ? .25f : 1;
-
-                        player.transform.DOKill();
-
-                        player.transform.SetParent(hit.collider.transform, true);
-
-                        // 내가 추가한 코드
-                        if (Math.Abs(movePos.x) > 0 && Math.Abs(movePos.x) != .5) movePos.x *= .5f;
-
-                        player.transform.DOScale(scale, .16f);
-
-                        player.transform.DOLocalMove(movePos, .16f);
-
-                        player.transform.DOLocalRotate(GetConvertedRotateV3(direction), .32f, RotateMode.Fast);
-
-                        GameManager.Instance.UpdateState(GameState.OVER);
-                        return;
-
                     default:
-                        Debug.Log(hit.collider.name);
                         break;
                 }
             }
             else
             {
-                // 버그 이유 부모 오브젝트가 없었어서 태그를 조회하지 못함
                 switch (player.transform.parent.tag)
                 {
                     case "Log":
@@ -227,7 +215,6 @@ public class PlayerComponent : Component
                         player.transform.DOJump(movePos, 1, 1, .32f);
                         player.transform.DOLocalRotate(GetConvertedRotateV3(direction), .32f, RotateMode.Fast);
                         return;
-
                     default:
                         pos += GetConvertedDirectionV3(direction);
                         break;

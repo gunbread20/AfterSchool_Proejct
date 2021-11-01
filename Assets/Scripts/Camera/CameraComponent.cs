@@ -32,6 +32,9 @@ public class CameraComponent : Component
 
     void Focus(GameObject player)
     {
+        if (camera == null)
+            return;
+
         Vector3 pos = player.transform.position;
 
         camera.DOOrthoSize(6, 1f);

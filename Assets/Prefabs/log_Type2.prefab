@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3366606256822472824}
-  - component: {fileID: -5924617972694081330}
+  - component: {fileID: 4225712402924206361}
   m_Layer: 0
   m_Name: log_Type2
   m_TagString: Log
@@ -76,7 +76,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5924617972694081330
+--- !u!114 &4225712402924206361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4592924755721100854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c11832570a45964ab86db91910fd4c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 41f1f1a9efe0e1242af7b7bfac27ef38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 16
@@ -145,7 +145,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -170,4 +169,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}

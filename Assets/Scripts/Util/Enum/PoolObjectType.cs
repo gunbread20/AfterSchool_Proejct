@@ -17,7 +17,8 @@
     TrainTrack,
     River,
 
-    Log_Type0,
-    Log_Type1,
-    Log_Type2
+    Log_Type0, // 14
+    Log_Type1, // 15
+    Log_Type2,  // 16
+    Coin
 }

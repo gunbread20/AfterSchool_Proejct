@@ -61,4 +61,27 @@ public class TrainTrack : Floor
 
         ObjectPool.Instance.ReturnObject(objectType, gameObject);
     }
+
+    Vector3 GetRandomTreePos()
+    {
+        Vector3 pos;
+
+        while (true)
+        {
+            pos = new Vector3(Random.Range(-10, 11), 0, transform.position.z);
+
+            if (pos.x == 0 && pos.z == 0)
+                continue;
+
+            return pos;
+        }
+    }
+
+    public override void CreateCoin()
+    {
+        GameObject coin = ObjectPool.Instance.GetObject(PoolObjectType.Coin);
+
+        coin.transform.SetParent(transform, true);
+        coin.transform.position = GetRandomTreePos();
+    }
 }

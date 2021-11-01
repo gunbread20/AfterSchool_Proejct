@@ -28,14 +28,6 @@ public class UiComponent : Component
         }
     }
 
-    void InitAllScreens()
-    {
-        foreach (var screen in screens)
-        {
-            screen.Init();
-        }
-    }
-
     void ActiveScreen(GameState type)
     {
         CloseAllScreens();
@@ -54,6 +46,14 @@ public class UiComponent : Component
     UIScreen GetScreen(GameState screenState)
     {
         return screens.Find(el => el.screenState == screenState);
+    }
+
+    void InitAllScreens()
+    {
+        foreach (var screen in screens)
+        {
+            screen.Init();
+        }
     }
 
 }

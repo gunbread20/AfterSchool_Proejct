@@ -24,13 +24,18 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
-
-        components.Add (new UiComponent());
-        components.Add(new FloorComponent());
-        components.Add(new WindowInputComponent());
+        
         components.Add(new PlayerComponent());
+        components.Add(new FloorComponent());
+        components.Add(new ScoreComponent());
+        components.Add(new CoinComponent());
+        components.Add (new UiComponent());   
+        components.Add(new WindowInputComponent());
+     
         components.Add(new CameraComponent());
         components.Add(new EagleComponent());
+
+
 
         UpdateState(GameState.INIT);
     }
@@ -55,6 +60,11 @@ public class GameManager : MonoBehaviour
                 value = (T)components[i];
 
         return value;
+    }
+
+    void OnApplicationQuit()
+    {
+        state = GameState.APPQUIT;
     }
 
 }

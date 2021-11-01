@@ -94,7 +94,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &350826072942935130
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,10 +104,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 350826072942935134}
-  - component: {fileID: -4200937392885776216}
+  - component: {fileID: 7295289946909663626}
   m_Layer: 0
   m_Name: River
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -129,7 +129,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4200937392885776216
+--- !u!114 &7295289946909663626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 350826072942935130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1984e43b7b992cf4793c654d2e465624, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dc63a4008799c94aaf8841f91733f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 13

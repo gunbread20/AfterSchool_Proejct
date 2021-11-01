@@ -89,4 +89,20 @@ public class Grass : Floor
 
         return false;
     }
+
+    public override void CreateCoin()
+    {
+        GameObject coin = ObjectPool.Instance.GetObject(PoolObjectType.Coin);
+
+        coin.transform.SetParent(transform, true);
+        coin.transform.position = GetRandomTreePos();
+    }
+
+    void ReturnCoins()
+    {
+        for (int i = 0; i < coins.Count; i++)
+            ObjectPool.Instance.ReturnObject(PoolObjectType.Coin, coins[i]);
+
+        coins.Clear();
+    }
 }

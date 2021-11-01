@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using DG.Tweening;
 using UnityEngine;
-using DG.Tweening;
 
 public class Log : MonoBehaviour
 {
+
     [SerializeField]
     PoolObjectType objectType;
 
@@ -12,6 +11,8 @@ public class Log : MonoBehaviour
     {
         gameObject.transform.DOKill();
 
-        ObjectPool.Instance.ReturnObject(objectType, gameObject);
+        ObjectPool.Instance.ReturnObject(
+            objectType, gameObject);
     }
+
 }

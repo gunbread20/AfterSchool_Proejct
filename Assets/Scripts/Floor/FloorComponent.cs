@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public class FloorComponent : Component
@@ -10,11 +12,20 @@ public class FloorComponent : Component
 
     int floorCreateCount = 40;
 
+    IObservable<Floor> floorStream;
+
     public void UpdateState(GameState state)
     {
         switch (state)
         {
             case GameState.INIT:
+
+                floorStream = Observable.EveryUpdate()
+            .Where(_ => floors.Count > 0)
+            .Select(_ => floors[floors.Count - 1].transform.position.z)
+            .DistinctUntilChanged()
+            .Select(_ => floors[floors.Count - 1]);
+
                 GameManager.Instance.GetGameBaseComponent<PlayerComponent>().Subscribe(pos =>
                 {
                     if (pos.z > floors[12].transform.position.z)
@@ -33,6 +44,11 @@ public class FloorComponent : Component
             default:
                 break;
         }
+    }
+
+    public void Subscribe(Action<Floor> action)
+    {
+        floorStream.Subscribe(action);
     }
 
     void CreateFloors()
@@ -81,29 +97,33 @@ public class FloorComponent : Component
     }
 
     PoolObjectType GetRandomFloorType()
-    {
+    {        
         if (floors.Count < (floorCreateCount / 2))
             return floors.Count % 2 == 0 ? PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
         else
         {
-            //if (Random.Range(0, 100) < 80)
-            //{
-            //    return floors[floors.Count - 1].transform.position.z % 2 != 0 ? PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
-            //}
-            //else
-            //{
-            //    int random = Random.Range(0, 101);
+            if (UnityEngine.Random.Range(0, 100) < 80)
+            {
+                return floors[floors.Count - 1].transform.position.z % 2 != 0 ? PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
+            }
+            else
+            {
+                int random = UnityEngine.Random.Range(0, 101);
 
-            //    if (random < 33)
-            //        return PoolObjectType.Road;
-            //    else if (random < 66)
-            //        return PoolObjectType.TrainTrack;
-            //    else
-            //        return PoolObjectType.River;
-
-            //}
-
-            return PoolObjectType.River;
+                if(random < 33)
+                {
+                    return PoolObjectType.Road;
+                }
+                else if(random < 66)
+                {
+                    return PoolObjectType.TrainTrack;
+                }
+                else
+                {
+                    return PoolObjectType.River;
+                }
+            }
         }
+        
     }
 }

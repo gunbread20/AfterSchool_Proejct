@@ -58,6 +58,14 @@ public class ObjectPool : MonoBehaviour
 
     public void ReturnObject(PoolObjectType type, GameObject obj)
     {
+        switch (obj.tag)
+        {
+            case "Coin":
+                if (obj.transform.parent == gameObject.transform)
+                    return;
+                break;
+        }
+
         obj.gameObject.SetActive(false);
         obj.transform.SetParent(Instance.transform);
         Instance.poolObjectMap[type].Enqueue(obj);
