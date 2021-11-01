@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using UniRx;
-using UniRx.Triggers;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager Instance;
 
     public GameState STATE
@@ -17,38 +14,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private List<Component> components = new List<Component>();
+    List<Component> components = new List<Component>();
 
-    private GameState state;
+    GameState state;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
 
     private void Start()
     {
-        Instance = this;
-        
-        components.Add(new PlayerComponent());
+        components.Add(new UIComponent());
         components.Add(new FloorComponent());
-        components.Add(new ScoreComponent());
-        components.Add(new CoinComponent());
-        components.Add (new UiComponent());   
-        components.Add(new WindowInputComponent());
-     
+        components.Add(new InputComponent());
         components.Add(new CameraComponent());
-        components.Add(new EagleComponent());
-
-
 
         UpdateState(GameState.INIT);
     }
 
     public void UpdateState(GameState state)
     {
-        this.state = state;
-
         for (int i = 0; i < components.Count; i++)
             components[i].UpdateState(state);
 
+        this.state = state;
+
         if (state == GameState.INIT)
             UpdateState(GameState.STANDBY);
+
     }
 
     public T GetGameBaseComponent<T>() where T : Component
@@ -62,9 +57,9 @@ public class GameManager : MonoBehaviour
         return value;
     }
 
-    void OnApplicationQuit()
+    public void UpdateState(int state)
     {
-        state = GameState.APPQUIT;
+        UpdateState((GameState)state);
     }
 
 }

@@ -1,129 +1,122 @@
-﻿using System;
-using System.Collections.Generic;
-using UniRx;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System;
 
 public class FloorComponent : Component
 {
 
+    IObservable<Floor> floorCreateStream;
+
+    GameObject baseFloor;
     List<Floor> floors = new List<Floor>();
+    int lotation = 0;
 
-    Vector3 defaultFloorPos = new Vector3(0, -.5f, -12);
+    public FloorComponent()
+    {
+        floorCreateStream = Observable.EveryUpdate()
+            .Where(_ => GameManager.Instance.STATE == GameState.RUNNING && floors.Count > 0)
+            .Select(_ => floors.Count)
+            .DistinctUntilChanged()
+            .Select(_ => floors[floors.Count - 1]);
 
-    int floorCreateCount = 40;
 
-    IObservable<Floor> floorStream;
+    }
+
+    public void Subscribe(Action<Floor> action)
+    {
+        floorCreateStream.Subscribe(action);
+    }
 
     public void UpdateState(GameState state)
     {
         switch (state)
         {
             case GameState.INIT:
+                Init();
 
-                floorStream = Observable.EveryUpdate()
-            .Where(_ => floors.Count > 0)
-            .Select(_ => floors[floors.Count - 1].transform.position.z)
-            .DistinctUntilChanged()
-            .Select(_ => floors[floors.Count - 1]);
-
-                GameManager.Instance.GetGameBaseComponent<PlayerComponent>().Subscribe(pos =>
-                {
-                    if (pos.z > floors[12].transform.position.z)
-                    {
-                        ClearSingleFloor();
-
-                        CreateSingleFloor();
-                    }
-                });
-
+                GameManager.Instance.GetGameBaseComponent<InputComponent>().
+                    Subscribe(CreateFloor);
                 break;
+
             case GameState.STANDBY:
-                CreateFloors();
-
+                Reset();
                 break;
-            default:
+
+            case GameState.RUNNING:
+                CreateFloor(0);
                 break;
         }
     }
 
-    public void Subscribe(Action<Floor> action)
+    void CreateFloor(long value)
     {
-        floorStream.Subscribe(action);
+        if (floors.Count > 0)
+        {
+            floors[floors.Count - 1].Stop();
+            Slice(floors[floors.Count - 1]);
+        }
+            
+
+        GameObject floor = ObjectPool.Instance.GetObject(PoolObjectType.Floor);
+
+        floors.Add(floor.GetComponent<Floor>());
+
+        floors[floors.Count - 1].Move(floors.Count % 2);
+
+        floor.transform.position = GetNextFloorPosition();
     }
 
-    void CreateFloors()
+    Vector3 GetNextFloorPosition()
     {
-        ClearAllFloor();
+        float nextYPos = 0;
+        float nextXPos = 0;
+        float nextZPos = 0;
 
-        for (int i = 0; i < floorCreateCount; i++)
-            CreateSingleFloor();
+        switch (floors.Count % 2)
+        {
+            case 0: nextXPos = -5; break;
+            //case 1: nextZPos = -5; break;
+            case 1: nextXPos = 5; break;
+            //case 3: nextZPos = 5; break;
+            default: break;
+        }
+
+        if (floors.Count > 1)
+        {
+            nextYPos =  (floors[floors.Count - 2].transform.localScale.y * .5f) +
+                        floors[floors.Count - 2].transform.position.y + 
+                        (floors[floors.Count - 1].transform.localScale.y * .5f);
+        }
+
+        return new Vector3(nextXPos, nextYPos, nextZPos);
     }
 
-    void CreateSingleFloor()
+    void Init()
     {
-        Floor floor = ObjectPool.Instance.GetObject(GetRandomFloorType()).GetComponent<Floor>();
+        baseFloor = ObjectPool.Instance.
+            GetObject(PoolObjectType.BaseFloor);
 
-        floor.transform.position = GetNextPosition();
-
-        floor.Generate();
-
-        floors.Add(floor);
+        baseFloor.transform.position
+            = new Vector3(0, -5.5f, 0);
     }
 
-    void ClearSingleFloor()
-    {
-        floors[0].Reset();
-
-        floors.RemoveAt(0);
-    }
-
-    void ClearAllFloor()
+    void Reset()
     {
         for (int i = 0; i < floors.Count; i++)
             floors[i].Reset();
 
         floors.Clear();
-     }
-
-    Vector3 GetNextPosition()
-    {
-        switch (floors.Count)
-        {
-            case 0:
-                return defaultFloorPos;
-            default:
-                return floors[floors.Count - 1].transform.position + Vector3.forward;
-        }
     }
 
-    PoolObjectType GetRandomFloorType()
-    {        
-        if (floors.Count < (floorCreateCount / 2))
-            return floors.Count % 2 == 0 ? PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
-        else
-        {
-            if (UnityEngine.Random.Range(0, 100) < 80)
-            {
-                return floors[floors.Count - 1].transform.position.z % 2 != 0 ? PoolObjectType.Floor_Type0 : PoolObjectType.Floor_Type1;
-            }
-            else
-            {
-                int random = UnityEngine.Random.Range(0, 101);
+    void Slice(Floor floor)
+    {
+        float distance = floor.transform.position.x - baseFloor.transform.position.x;
 
-                if(random < 33)
-                {
-                    return PoolObjectType.Road;
-                }
-                else if(random < 66)
-                {
-                    return PoolObjectType.TrainTrack;
-                }
-                else
-                {
-                    return PoolObjectType.River;
-                }
-            }
-        }
-        
+        float newXSize = baseFloor.transform.localScale.x - Math.Abs(distance);
+        float newXPosition = baseFloor.transform.position.x + (distance * .5f);
+
+        floor.transform.localScale = new Vector3(newXSize, floor.transform.localScale.y, floor.transform.localScale.z);
+        floor.transform.position = new Vector3(newXPosition, floor.transform.position.y, floor.transform.position.z);
     }
 }

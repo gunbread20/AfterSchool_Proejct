@@ -1,16 +1,21 @@
-﻿using UnityEngine;
-using DG.Tweening;
+using UnityEngine;
+using UniRx;
+using System;
 
 public class CameraComponent : Component
 {
-
-    private Camera camera;
-
-    private Vector3 distance = new Vector3(2, 10, -5);
+    Vector3 offset = new Vector3(10, 10, -10);
 
     public CameraComponent()
     {
-        camera = Camera.main;
+        Observable.EveryUpdate()
+            .Where(_ => GameManager.Instance.STATE == GameState.RUNNING)
+            .Subscribe(Move);
+    }
+
+    void Move(long value)
+    {
+        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, offset, Time.deltaTime * 5f);
     }
 
     public void UpdateState(GameState state)
@@ -18,46 +23,24 @@ public class CameraComponent : Component
         switch (state)
         {
             case GameState.INIT:
-                GameManager.Instance.GetGameBaseComponent<PlayerComponent>().Subscribe(Follow);
-                GameManager.Instance.GetGameBaseComponent<PlayerComponent>().Subscribe(Focus);
+                GameManager.Instance.GetGameBaseComponent<FloorComponent>().Subscribe(CreateFloorEvent);
                 break;
+
             case GameState.STANDBY:
                 Reset();
-
-                break;
-            default:
                 break;
         }
     }
 
-    void Focus(GameObject player)
+    void CreateFloorEvent(Floor floor)
     {
-        if (camera == null)
-            return;
-
-        Vector3 pos = player.transform.position;
-
-        camera.DOOrthoSize(6, 1f);
-        camera.transform.DOMove(pos + distance, 1f);
-    }
-
-    void Follow(Vector3 v3)
-    {
-        v3.y = 0;
-        v3 += distance;
-
-        if (camera.transform.position.z > v3.z)
-            v3.z = camera.transform.position.z;
-
-        if (Mathf.Abs(v3.x) > (v3.x >= 0 ? 8 : 4)) 
-            v3.x = camera.transform.position.x;
-
-        camera.transform.position = Vector3.Lerp(camera.transform.position, v3, Time.deltaTime * 5f);
+        offset.y = 12.5f + floor.transform.position.y;
     }
 
     void Reset()
     {
-        camera.transform.position = distance;
-        camera.orthographicSize = 7.5f;
+        offset = new Vector3(10, 10, -10);
+
+        Camera.main.transform.position = offset;
     }
 }

@@ -1,24 +1,27 @@
-﻿using System;
+﻿using UnityEngine;
 using UniRx;
-using UnityEngine;
-using UnityEngine.UI;
+using System;
 
-public abstract class InputComponent : Component
+public class InputComponent : Component
 {
-    protected IObservable<Direction> clickStream;
+
+    protected IObservable<long> inputStream;
 
     public InputComponent()
     {
-        clickStream = Observable.EveryUpdate()
-        .Where(_ => Input.anyKeyDown)
-        .ThrottleFirst(TimeSpan.FromMilliseconds(250))
-        .Where(_ => GameManager.Instance.STATE == GameState.RUNNING)
-        .Select(_ => GetDirection(Input.inputString));
+        inputStream = Observable.EveryUpdate()
+             .Where(_ => Input.GetMouseButtonDown(0))
+             .Where(_ => GameManager.Instance.STATE ==
+             GameState.RUNNING);
     }
 
-    public abstract Direction GetDirection(string keycode);
+    public void UpdateState(GameState state)
+    {
+     
+    }
 
-    public void UpdateState(GameState state) { }
-
-    public void Subscribe(Action<Direction> action) { clickStream.Subscribe(action); }
+    public void Subscribe(Action<long> action)
+    {
+        inputStream.Subscribe(action);
+    }
 }

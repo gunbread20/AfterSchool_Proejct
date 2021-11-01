@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class UiComponent : Component
+public class UIComponent : Component
 {
 
     List<UIScreen> screens = new List<UIScreen>();
 
-    public UiComponent()
+    public UIComponent()
     {
-        this.screens.Add(GameObject.Find("StandbyScreen").GetComponent<UIScreen>());
-        this.screens.Add(GameObject.Find("ShopScreen").GetComponent<UIScreen>());
-        this.screens.Add(GameObject.Find("RunningScreen").GetComponent<UIScreen>());
-        this.screens.Add(GameObject.Find("OverScreen").GetComponent<UIScreen>());
+        screens.Add(GameObject.Find("StandbyScreen").GetComponent<UIScreen>());
+        screens.Add(GameObject.Find("RunningScreen").GetComponent<UIScreen>());
+        screens.Add(GameObject.Find("OverScreen").GetComponent<UIScreen>());
     }
 
     public void UpdateState(GameState state)
@@ -19,8 +18,8 @@ public class UiComponent : Component
         switch (state)
         {
             case GameState.INIT:
-                InitAllScreens();
-                CloseAllScreens();
+                CloseAllScreen();
+
                 break;
             default:
                 ActiveScreen(state);
@@ -28,32 +27,23 @@ public class UiComponent : Component
         }
     }
 
-    void ActiveScreen(GameState type)
+    void ActiveScreen(GameState state)
     {
-        CloseAllScreens();
+        CloseAllScreen();
 
-        GetScreen(type).UpdateScreenStatus(true);
+        GetScreen(state).UpdateScreenState(true);
     }
 
-    void CloseAllScreens()
+    void CloseAllScreen()
     {
-        foreach (var screen in screens)
+        foreach(var screen in screens)
         {
-            screen.UpdateScreenStatus(false);
+            screen.UpdateScreenState(false);
         }
     }
 
-    UIScreen GetScreen(GameState screenState)
+    UIScreen GetScreen(GameState state)
     {
-        return screens.Find(el => el.screenState == screenState);
+        return screens.Find(screen => screen.screenState == state);
     }
-
-    void InitAllScreens()
-    {
-        foreach (var screen in screens)
-        {
-            screen.Init();
-        }
-    }
-
 }
